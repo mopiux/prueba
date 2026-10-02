@@ -1,0 +1,142 @@
+{
+  "$schema": "design-dna/v1",
+  "name": "Órbita — Design DNA",
+  "version": "1.0.0",
+  "reference": {
+    "url": "https://madewithgsap.com/",
+    "role": "Referencia de motion y efectos",
+    "capture": {
+      "method": "manual",
+      "live": false,
+      "note": "La política de red del entorno bloqueó madewithgsap.com (403 en el proxy de salida y en WebFetch), y no se pudo instalar la skill design-dna. Este archivo se armó a mano a partir de lo que se conoce del sitio de referencia (la galería de efectos de GSAP y la identidad de marca de gsap.com) y se tradujo a la dirección de Órbita. No contiene valores medidos en vivo."
+    }
+  },
+  "principles": [
+    "La tipografía es la imagen: titulares enormes, editoriales, con cortes itálicos de mucho carácter.",
+    "El movimiento cuenta algo: cada animación está atada al scroll o a la mano del usuario; nada se mueve sólo para decorar.",
+    "Oscuridad con temperatura: negro azulado de cielo profundo, tinta crema cálida y un único acento brasa.",
+    "Metadatos de instrumento: coordenadas, horas y catálogos en monoespaciada, como en una bitácora de observación.",
+    "Líneas finas antes que cajas: separadores de 1px, bordes translúcidos, pocas sombras."
+  ],
+  "referenceTraits": {
+    "observedPatterns": [
+      { "id": "split-text-reveal", "description": "Titulares que entran letra por letra desde abajo, con máscara por línea y stagger corto." },
+      { "id": "pinned-horizontal", "description": "Sección fijada (pin) que convierte el scroll vertical en desplazamiento horizontal, con scrub." },
+      { "id": "scroll-color-shift", "description": "Fondos que interpolan color según el progreso del ScrollTrigger." },
+      { "id": "magnetic-hover", "description": "Elementos que se inclinan y siguen al cursor con inercia y vuelven con un rebote elástico." },
+      { "id": "number-counter", "description": "Cifras que cuentan desde cero cuando entran en el viewport." },
+      { "id": "scrub-text-highlight", "description": "Párrafos que se iluminan palabra por palabra al scrollear." },
+      { "id": "canvas-interactive-bg", "description": "Fondos generativos en canvas que reaccionan al puntero." }
+    ],
+    "brandPalette": {
+      "note": "Familia de color de la marca GSAP que comparte la referencia. Se usa como punto de partida y no se copia tal cual.",
+      "dark": "#0e100f",
+      "light": "#fffce1",
+      "orange": "#ff8709",
+      "lime": "#abff84",
+      "purple": "#9d95ff",
+      "blue": "#00bae2",
+      "pink": "#fec5fb"
+    }
+  },
+  "tokens": {
+    "color": {
+      "void":      { "value": "#05060a", "role": "Fondo base. Cielo sin luna.", "tw": "--color-void / --background" },
+      "night":     { "value": "#0a0c14", "role": "Superficies (cards, paneles).", "tw": "--color-night / --card" },
+      "nebula":    { "value": "#141827", "role": "Superficie elevada, hover, accent de shadcn.", "tw": "--color-nebula / --accent" },
+      "dust":      { "value": "#efe7d6", "role": "Tinta principal, crema cálida (deriva del light #fffce1).", "tw": "--color-dust / --foreground" },
+      "dustMuted": { "value": "rgb(239 231 214 / 0.62)", "role": "Texto secundario. Contraste ≥ 4.5:1 sobre void.", "tw": "--muted-foreground" },
+      "ember":     { "value": "#ff7a3d", "role": "Acento único: CTA, foco, itálicas destacadas. Atardecer sobre el salar (deriva del orange #ff8709).", "tw": "--color-ember / --primary / --ring" },
+      "amber":     { "value": "#ffc06e", "role": "Brillo cálido secundario, chispas de estrellas.", "tw": "--color-amber" },
+      "ice":       { "value": "#9cc2ff", "role": "Luz estelar fría, hora azul, contrapunto del acento.", "tw": "--color-ice" },
+      "line":      { "value": "rgb(239 231 214 / 0.12)", "role": "Hairlines y bordes.", "tw": "--border" },
+      "dot":       { "value": "rgb(168 178 210)", "role": "Puntos en reposo del canvas del hero.", "tw": "--cb-dot" }
+    },
+    "skyPhases": {
+      "description": "Paradas de color que interpola la sección fijada de fases de la noche.",
+      "atardecer": { "top": "#1b1030", "mid": "#7a2e3a", "bottom": "#ff8a4a" },
+      "horaAzul":  { "top": "#060b24", "mid": "#13275e", "bottom": "#3d5fa8" },
+      "viaLactea": { "top": "#020308", "mid": "#070a17", "bottom": "#121633" },
+      "amanecer":  { "top": "#141a3a", "mid": "#7c5a8a", "bottom": "#ffb37a" }
+    },
+    "typography": {
+      "display": {
+        "family": "Fraunces Variable",
+        "fallback": "ui-serif, Georgia, serif",
+        "axes": { "opsz": 144, "SOFT": 50, "WONK": 1 },
+        "weights": [300, 400],
+        "italic": "Se usa para la palabra clave de cada titular, en ember.",
+        "tracking": "-0.035em",
+        "leading": 0.88,
+        "tw": "--font-display"
+      },
+      "sans": {
+        "family": "Geist Variable",
+        "fallback": "ui-sans-serif, system-ui, sans-serif",
+        "weights": [400, 500],
+        "tracking": "-0.01em",
+        "leading": 1.55,
+        "tw": "--font-sans"
+      },
+      "mono": {
+        "family": "JetBrains Mono Variable",
+        "fallback": "ui-monospace, monospace",
+        "usage": "Eyebrows, coordenadas, horas, catálogos. Mayúsculas, tracking 0.14em, 11–12px.",
+        "tw": "--font-mono"
+      },
+      "scale": {
+        "hero":    "clamp(3.4rem, 10.5vw, 10.5rem)",
+        "h2":      "clamp(2.6rem, 6.4vw, 6.25rem)",
+        "h3":      "clamp(1.75rem, 2.6vw, 2.5rem)",
+        "stat":    "clamp(4rem, 9vw, 8.5rem)",
+        "lead":    "clamp(1.125rem, 1.4vw, 1.375rem)",
+        "body":    "1rem",
+        "eyebrow": "0.6875rem"
+      }
+    },
+    "space": {
+      "base": "4px",
+      "gutter": "clamp(1.25rem, 4vw, 3.5rem)",
+      "sectionY": "clamp(6rem, 14vw, 12rem)",
+      "maxWidth": "88rem"
+    },
+    "radius": { "base": "0.625rem", "pill": "9999px", "tw": "--radius" },
+    "border": { "hairline": "1px solid rgb(239 231 214 / 0.12)" },
+    "elevation": {
+      "glowEmber": "0 0 0 1px rgb(255 122 61 / 0.35), 0 18px 60px -12px rgb(255 122 61 / 0.45)",
+      "card": "inset 0 1px 0 0 rgb(239 231 214 / 0.06)"
+    },
+    "texture": {
+      "grain": "Ruido SVG (feTurbulence) al 6–7% con blend overlay.",
+      "vignette": "Radial, de transparente al 45% hasta void al 100%."
+    }
+  },
+  "motion": {
+    "library": "GSAP 3 + ScrollTrigger (scroll y hover). Framer Motion sólo dentro de background-paths.",
+    "easing": {
+      "outExpo":  { "gsap": "expo.out",          "css": "cubic-bezier(0.16, 1, 0.3, 1)" },
+      "outQuart": { "gsap": "power4.out",        "css": "cubic-bezier(0.25, 1, 0.5, 1)" },
+      "inOut":    { "gsap": "power3.inOut",      "css": "cubic-bezier(0.65, 0, 0.35, 1)" },
+      "spring":   { "gsap": "elastic.out(1, 0.45)", "use": "Retorno de los elementos magnéticos." }
+    },
+    "duration": { "micro": 0.25, "ui": 0.6, "reveal": 1.2, "count": 2.2 },
+    "stagger": { "char": 0.028, "word": 0.06, "item": 0.12 },
+    "scrub": { "pinned": 1, "highlight": true },
+    "reducedMotion": "Sin pin ni scrub; contenido estático, contadores en su valor final, canvas renderizado en un solo cuadro, órbitas quietas."
+  },
+  "patterns": {
+    "hero": { "uses": ["canvas-interactive-bg", "split-text-reveal"], "notes": "La esfera de glifos orbita sola cuando no hay puntero y sigue al cursor dentro del hero." },
+    "manifesto": { "uses": ["scrub-text-highlight"] },
+    "nightPhases": { "uses": ["pinned-horizontal", "scroll-color-shift"] },
+    "experiences": { "uses": ["magnetic-hover"] },
+    "stats": { "uses": ["number-counter"] },
+    "booking": { "uses": ["orbital-paths (Framer Motion)", "scroll parallax del contenedor (GSAP)"] }
+  },
+  "antiPatterns": [
+    "Gradientes violeta-azul genéricos de IA",
+    "Inter o Roboto como tipografía de marca",
+    "Tarjetas con sombras pesadas y bordes redondeados enormes",
+    "Fotos de stock genéricas de cielos estrellados",
+    "Emojis como iconografía"
+  ]
+}
